@@ -16,13 +16,13 @@ def convert(decimal_num):
 
 @app.route("/")
 def root():
-    return render_template("index.html", not_valid = False, developer_name="E2326-Ramazan SARIBAY")
+    return render_template("index.html", not_valid = False, developer_name="E2163-Oguzhan KEHA")
 
 @app.route("/", methods = ["POST"])
 def result():
     alpha = request.form["number"]
     if (not alpha.isdecimal()) or (not (0 < int(alpha) < 4000)):
-        return render_template("index.html", not_valid = True, developer_name="E2326-Ramazan SARIBAY")
+        return render_template("index.html", not_valid = True, developer_name="E2163-Oguzhan KEHA")
     number = int(alpha)
     return render_template("result.html", number_decimal = number, number_roman =convert(number) )
 
