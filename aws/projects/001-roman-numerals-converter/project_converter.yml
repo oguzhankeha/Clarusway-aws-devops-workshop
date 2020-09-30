@@ -8,8 +8,7 @@ Description: >
 Parameters:
   KeyName:
     Description: The EC2 Key Pair to allow SSH access to the instances
-    Type: AWS::EC2::KeyPair::KeyName
-    Default: 
+    Type: AWS::EC2::KeyPair::KeyName 
 
 Resources:
   WebServerSecurityGroup:
@@ -41,17 +40,15 @@ Resources:
         Fn::Base64:
           !Sub |
             #! /bin/bash 
-            yum update -y
-            yum install -y python3
-            pip3 install flask
+            sudo yum update -y
+            sudo yum install -y python3
+            sudo pip3 install flask
             mkdir templates
             cd templates
-            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/templates/index.html
-            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/templates/result.html
+            sudo wget https://raw.githubusercontent.com/oguzhankeha/Clarusway-aws-devops-workshop/master/aws/projects/001-roman-numerals-converter/templates/index.html
+            sudo wget https://raw.githubusercontent.com/oguzhankeha/Clarusway-aws-devops-workshop/master/aws/projects/001-roman-numerals-converter/templates/result.html
             cd ..
-            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/Project_001_.png
-            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/app.py
-            wget https://raw.githubusercontent.com/ramazansaribay/ram_projects/master/aws/projects/001-roman-numerals-converter/project-001-snapshot.png
+            sudo wget https://raw.githubusercontent.com/oguzhankeha/Clarusway-aws-devops-workshop/master/aws/projects/001-roman-numerals-converter/app.py
             python3 app.py
             
 Outputs:
