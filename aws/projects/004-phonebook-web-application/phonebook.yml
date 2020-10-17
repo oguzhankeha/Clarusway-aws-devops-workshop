@@ -48,11 +48,11 @@ Resources:
             cd /home/ec2-user
             mkdir templates
             cd templates
-            wget https://raw.githubusercontent.com/albertsunn/aws-workshop/master/aws/projects/004-phonebook-web-application/templates/add-update.html
-            wget https://raw.githubusercontent.com/albertsunn/aws-workshop/master/aws/projects/004-phonebook-web-application/templates/delete.html
-            wget https://raw.githubusercontent.com/albertsunn/aws-workshop/master/aws/projects/004-phonebook-web-application/templates/index.html
+            sudo wget https://raw.githubusercontent.com/oguzhankeha/Clarusway-aws-devops-workshop/master/aws/projects/004-phonebook-web-application/templates/add-update.html
+            sudo wget https://raw.githubusercontent.com/oguzhankeha/Clarusway-aws-devops-workshop/master/aws/projects/004-phonebook-web-application/templates/delete.html
+            sudo wget https://raw.githubusercontent.com/oguzhankeha/Clarusway-aws-devops-workshop/master/aws/projects/004-phonebook-web-application/templates/index.html
             cd ..
-            wget https://raw.githubusercontent.com/albertsunn/aws-workshop/master/aws/projects/004-phonebook-web-application/phonebook-app.py
+            sudo wget https://raw.githubusercontent.com/oguzhankeha/Clarusway-aws-devops-workshop/master/aws/projects/004-phonebook-web-application/phonebook-app.py
             echo "${mySQLRDS.Endpoint.Address}" >> dbserver.endpoint
             sudo yum install python3 -y
             sudo pip3 install flask
