@@ -1,55 +1,34 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
 
 
-from flask import Flask, render_template, request 
+def convert(millisecond):
+    hour_in_millisecond = 60*60*1000
+    hours = millisecond // hour_in_millisecond
+    millisecond_left = millisecond % hour_in_millisecond
 
+    minute_in_millisecond = 60*1000
+    minutes = millisecond_left // minute_in_millisecond
+    millisecond_left %= minute_in_millisecond
 
+    seconds = millisecond_left // 1000
 
-app = Flask (__name__)
+    return f'{hours} hour/s '*(hours!=0) + f'{minutes} minute/s '*(minutes!=0) + f'{seconds} second/s '*(seconds!=0) or f'just {millisecond} millisecond/s'
 
+@app.route('/', methods=['GET'])
+def main_get():
+        return render_template('index.html', developer_name ='Serdar', not_valid = False)
 
+@app.route('/', methods=['POST'])
+def main_post():
+    alpha = request.form['number']
+    if not alpha.isdecimal():
+        return render_template('index.html', developer_name = 'Serdar', not_valid = True)
+    if not (0 < int(alpha)):
+        return render_template('index.html', developer_name = 'Serdar', not_valid = True)
+    return render_template('result.html', developer_name=' Serdar', milliseconds = alpha, result = convert(int(alpha)) )
 
-@app.route("/")
-def home ():
-    return render_template ("index.html", not_valid = False, developer_name = "E2163-Oguzhan")
-
-
-
-
-@app.route ("/", methods = ["POST"])
-def calc ():
-    if request.method == "POST":
-        own_number = request.form["number"]
-
-        
-        if own_number.isdigit() == False or  not 0<int(own_number):
-            return render_template("index.html" , not_valid = True , developer_name = "E2163-Oguzhan")
-
-
-            
-        else:
-            def convert(num):
-                word = ""
-                a = num // 3600000
-                if a != 0:
-                    word = str(a) + " hour/s  "
-                num %= 3600000
-                b = num // 60000
-                if b!=0:
-                    word += str(b) + " minute/s  "
-                num %= 60000
-                c = num // 1000
-                if c != 0:
-                    word += str(c) + " second/s"
-                if word == "":
-                    word = "just " + str(num) + " milisecond/s"
-                    return word
-                else:
-                    return word
-
-            
-    return render_template("result.html", milliseconds = own_number , result = convert(int(own_number)) , developer_name = "E2163-Oguzhan")
-
-
-
-if __name__ == "__main__":
-    app.run (host="0.0.0.0", port =80)
+if __name__ == '__main__':
+    #app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)

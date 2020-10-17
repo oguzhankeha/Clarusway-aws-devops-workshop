@@ -1,43 +1,38 @@
+from flask import Flask, render_template, request
 
+app = Flask(__name__)
 
-from flask import Flask, render_template, request , redirect, url_for
+def convert(decimal_num):
+    roman = {1000:'M', 900:'CM', 500:'D', 400:'CD', 100:'C', 90:'XC', 50:'L', 40:'XL', 10:'X', 9:'IX', 5:'V', 4:'IV', 1:'I'}
+    num_to_roman = ''
+    for i in roman.keys():
+        num_to_roman += roman[i]*(decimal_num//i)
+        decimal_num %= i
+    return num_to_roman
 
-app = Flask (__name__)
+@app.route('/', methods=['GET'])
+def main_get():
+    return render_template('index.html', developer_name='Serdar', not_valid=False)
 
-@app.route("/")
-def home ():
-    return render_template ("index.html", developer_name = "E2163-Oguzhan")
+@app.route('/', methods=['POST'])
+def main_post():
+    alpha = request.form['number']
+    if not alpha.isdecimal():
+        return render_template('index.html', developer_name='Serdar', not_valid=True)
 
+    number = int(alpha)
+    if not 0 < number < 4000:
+        return render_template('index.html', developer_name='Serdar', not_valid=True)
 
-@app.route ("/", methods = ["GET","POST"])
-def calc ():
-    if request.method == "POST":
-        number = request.form["number"]
-        if number.isdigit() == False or not 0<int(number)<4000:
-            return render_template("index.html" , not_valid = True , developer_name = "E2163-Oguzhan")
-        else:
-            L100 = {"0":"","1":"C", "2":"CC", "3":"CCC", "4":"CD", "5":"D", "6":"DC", "7":"DCC", "8":"DCCC", "9":"CM"}
-            L10 = {"0":"","1":"X", "2":"XX", "3":"XXX", "4":"XL", "5":"L", "6":"LX", "7":"LXX", "8":"LXXX", "9":"XC"}
-            L1 = {"0":"","1":"I", "2":"II", "3":"III", "4":"IV", "5":"V", "6":"VI", "7":"VII", "8":"VIII", "9":"IX"}
-            
-            def conv(num):
-                if len(num)==4:
-                    roman = int(num[0])*"M" + L100[num[1]] + L10[num[2]] + L1[num[3]]
-                    
-                elif len(number)==3:
-                    roman = L100[num[0]] + L10[num[1]] + L1[num[2]]
-                    
-                elif len(number)==2:
-                    roman = L10[num[0]] + L1[num[1]]
-                    
-                else :
-                    roman = L1[num[0]]
-                return roman
+    return render_template('result.html', number_decimal = number , number_roman= convert(number), developer_name='Serdar')
 
-            
-        return render_template("result.html", number_decimal=number , number_roman = conv(number) , developer_name = "E2163-Oguzhan")
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     #app.run(debug=True)
     app.run(host='0.0.0.0', port=80)
+
+
+
+
+
+
+
