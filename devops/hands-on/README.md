@@ -47,8 +47,24 @@ List of hands-on trainings within DevOps as follows;
 
 # Kubernetes
 
+- [Kubernetes Introduction](./kubernetes/kubernetes-00-introduction)
+  
 - [Hands-on Kubernetes-01 : Installing Kubernetes on Ubuntu 20.04 running on AWS EC2 Instances](./kubernetes/kubernetes-01-installing-on-ec2-linux2)
 
 - [Hands-on Kubernetes-02 : Kubernetes Basic Operations](./kubernetes/kubernetes-02-basic-operations)
 
 - [Hands-on Kubernetes-03 : Kubernetes Networking and Service Discovery](./kubernetes/kubernetes-03-networking-service-discovery)
+
+- [Hands-on Kubernetes-04 : Deploying Microservices and Service Level Autoscaling](./kubernetes/kubernetes-04-microservice-deployment-and-autoscaling)
+
+- [Hands-on Kubernetes-05 : Managing Secrets and ConfigMaps](./kubernetes/kubernetes-05-managing-secrets-and-configmaps)
+
+- [Hands-on Kubernetes-06 : Kubernetes Volumes](./kubernetes/kubernetes-06-pods-volumes)
+
+- [Hands-on EKS-01 : Creating and Managing Kubernetes Cluster with AWS EKS](./kubernetes/eks-01-managing-kubernete-cluster-with-eks)
+
+- [Hands-on EKS-02 : Dynamic Volume Provisioning and Ingress](./kubernetes/eks-02-DynamicVolumeProvisionining-and-Ingress/)
+
+# Terraform
+
+- [Hands-on Terraform-01 : Terraform Installation and Basic Operations](./terraform/terraform-01-basic-operations/)
